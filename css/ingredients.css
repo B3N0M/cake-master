@@ -1,0 +1,146 @@
+.ingredients-list {
+    list-style: none;
+    flex-grow: 1;
+    margin-bottom: 2rem;
+    max-height: 350px; /* Idealnie dla ok. 8 elementów */
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#custom-ingredients-list, #pricing-ingredients-list {
+    max-height: 350px;
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+    padding-right: 10px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
+}
+
+.ingredient-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(74, 55, 40, 0.05);
+    transition: background 0.2s;
+}
+
+.ingredient-item:hover {
+    background: rgba(255, 221, 210, 0.1);
+}
+
+.amount {
+    font-weight: 800; /* Jeszcze grubszy font */
+    font-size: 1.3rem; /* Większy rozmiar */
+    color: var(--color-secondary);
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.amount.pop {
+    transform: scale(1.2);
+}
+
+.unit {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1rem; /* Większa jednostka */
+    margin-left: 8px;
+    opacity: 0.9;
+}
+
+.custom-ingredients-header {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.2fr 40px; /* Ilość > Jednostka */
+    gap: 1rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.ingredient-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.2fr 40px; /* Ilość > Jednostka */
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+.pricing-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.pricing-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+    align-items: center;
+}
+
+.pricing-row .ing-name-label {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Autocomplete styling */
+.autocomplete-container {
+    position: relative;
+}
+
+.autocomplete-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--color-accent);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    margin-top: 4px;
+}
+
+.autocomplete-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.autocomplete-item:hover {
+    background: var(--color-accent);
+}
+
+.servings-group {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}

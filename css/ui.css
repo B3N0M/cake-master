@@ -1,0 +1,136 @@
+.card {
+    background: var(--color-white);
+    padding: 3rem; 
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(74, 55, 40, 0.08);
+    border: 1px solid rgba(74, 55, 40, 0.03);
+    display: flex;
+    flex-direction: column;
+    min-height: 850px;
+    min-width: 450px; /* Minimalna szerokość zapobiega ściskaniu */
+    height: 100%;
+    overflow: hidden; /* Ochrona przed rozpychaniem przez treść */
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label, .pan-config > label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #2c1810;
+}
+
+/* Premium Inputs and Selects */
+.input-group input, .input-group select, .ingredient-row input, .ingredient-row select, .pricing-row input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--color-accent); /* Brzoskwiniowe ramki */
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+    background: var(--color-white);
+    outline: none;
+    appearance: none; /* Usuwa systemowy wygląd selecta */
+}
+
+/* Custom Arrow for Select */
+select.ing-unit {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e29578' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center; /* Strzałka bliżej krawędzi */
+    padding-left: 0.8rem; /* Więcej miejsca z lewej */
+    padding-right: 1.8rem; /* Mniejszy padding dla tekstu */
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 4px rgba(226, 149, 120, 0.1);
+}
+
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    background: var(--color-bg);
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--color-accent);
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+    opacity: 0.6;
+}
+
+.tab-btn.active {
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    opacity: 1;
+    color: var(--color-secondary);
+}
+
+.btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.2s, background 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: #36281d;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: none;
+    border: 2px dashed var(--color-secondary);
+    color: var(--color-secondary);
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: var(--color-accent);
+    border-style: solid;
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: #ffb3b3;
+    font-weight: 800;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 1.2rem;
+}
+
+.btn-remove:hover {
+    color: #ff4d4d;
+}
