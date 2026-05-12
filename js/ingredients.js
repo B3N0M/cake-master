@@ -36,9 +36,20 @@ function initAutocomplete(input, listContainer) {
     input.addEventListener('input', () => {
         const value = input.value.toLowerCase();
         listContainer.innerHTML = '';
-        if (!value) return;
+        
+        if (!value) {
+            listContainer.style.display = 'none';
+            return;
+        }
 
         const matches = commonIngredients.filter(ing => ing.toLowerCase().includes(value)).slice(0, 5);
+        
+        if (matches.length === 0) {
+            listContainer.style.display = 'none';
+            return;
+        }
+
+        listContainer.style.display = 'block';
         matches.forEach(match => {
             const li = document.createElement('div');
             li.className = 'autocomplete-item';
@@ -46,6 +57,7 @@ function initAutocomplete(input, listContainer) {
             li.addEventListener('click', () => {
                 input.value = match;
                 listContainer.innerHTML = '';
+                listContainer.style.display = 'none';
                 
                 const unitSelect = input.closest('.ingredient-row').querySelector('.ing-unit');
                 const lowerMatch = match.toLowerCase();
@@ -63,7 +75,13 @@ function initAutocomplete(input, listContainer) {
             listContainer.appendChild(li);
         });
     });
-    document.addEventListener('click', (e) => { if (e.target !== input) listContainer.innerHTML = ''; });
+    
+    document.addEventListener('click', (e) => { 
+        if (e.target !== input) {
+            listContainer.innerHTML = '';
+            listContainer.style.display = 'none';
+        }
+    });
 }
 
 function addIngredientRow() {
