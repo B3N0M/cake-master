@@ -347,15 +347,11 @@ function calculate() {
     elements.previewTarget.style.height = `${hTarget}px`;
     elements.previewTarget.style.borderRadius = panTypes.target === 'round' ? '50%' : '4px';
 
-    // Rysujemy porcje TYLKO na Twoim torcie dla czytelności
-    const servings = parseInt(elements.servingsInput.value) || 12;
-    
-    // Czyścimy bazę (zostaje czysty kształt dla porównania)
+    // Czyścimy obie formy z ewentualnych starych linii
     elements.previewBase.querySelectorAll('.slice-line').forEach(l => l.remove());
+    elements.previewTarget.querySelectorAll('.slice-line').forEach(l => l.remove());
     
-    // Twój tort
-    drawSlices(elements.previewTarget, panTypes.target, servings, tW || tDia, tH || tDia);
-
+    // Wizualizacja skupia się teraz tylko na rozmiarze (bez porcji)
     renderIngredients(recipe, multiplier);
 }
 
