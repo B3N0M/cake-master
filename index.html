@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Master Calculator | Profesjonalny Przelicznik Cukierniczy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <span class="subtitle">Artisan Bakery Tools</span>
+        <h1>Cake Master</h1>
+    </header>
+
+    <main class="container">
+        <!-- Panel Konfiguracyjny (Lewa strona) -->
+        <section class="card">
+            <div class="tabs">
+                <button class="tab-btn active" id="tab-recipe">1. Twój Przepis</button>
+                <button class="tab-btn" id="tab-pricing">2. Wycena</button>
+            </div>
+
+            <!-- ETAP 1: PRZEPIS -->
+            <div id="recipe-stage">
+                <div class="grid-2" style="margin-bottom: 2rem;">
+                    <!-- FORMA Z PRZEPISU -->
+                    <div class="pan-config">
+                        <label>Forma z przepisu</label>
+                        <div class="pan-type-toggle">
+                            <button class="pan-type-btn active" data-side="base" data-type="round">Okrągła</button>
+                            <button class="pan-type-btn" data-side="base" data-type="rect">Blacha</button>
+                        </div>
+                        <div id="base-round-inputs">
+                            <div class="input-group">
+                                <label>Średnica (cm)</label>
+                                <input type="number" id="base-dia" value="20" min="0" max="60">
+                            </div>
+                        </div>
+                        <div id="base-rect-inputs" style="display: none;">
+                            <div class="grid-2-mini">
+                                <div class="input-group">
+                                    <label>Szer. (cm)</label>
+                                    <input type="number" id="base-width" value="20" min="0" max="60">
+                                </div>
+                                <div class="input-group">
+                                    <label>Dł. (cm)</label>
+                                    <input type="number" id="base-height" value="30" min="0" max="60">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TWOJA FORMA -->
+                    <div class="pan-config">
+                        <label>Twoja forma</label>
+                        <div class="pan-type-toggle">
+                            <button class="pan-type-btn active" data-side="target" data-type="round">Okrągła</button>
+                            <button class="pan-type-btn" data-side="target" data-type="rect">Blacha</button>
+                        </div>
+                        <div id="target-round-inputs">
+                            <div class="input-group">
+                                <label>Średnica (cm)</label>
+                                <input type="number" id="target-dia" value="24" min="0" max="60">
+                            </div>
+                        </div>
+                        <div id="target-rect-inputs" style="display: none;">
+                            <div class="grid-2-mini">
+                                <div class="input-group">
+                                    <label>Szer. (cm)</label>
+                                    <input type="number" id="target-width" value="25" min="0" max="60">
+                                </div>
+                                <div class="input-group">
+                                    <label>Dł. (cm)</label>
+                                    <input type="number" id="target-height" value="35" min="0" max="60">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-ingredients-header">
+                    <span>Składnik</span>
+                    <span>Ilość</span>
+                    <span>Jedn.</span>
+                    <span></span>
+                </div>
+                <div id="custom-ingredients-list"></div>
+                <button class="btn-secondary" id="add-ingredient-btn" style="margin-bottom: 2rem;">+ Dodaj składnik</button>
+                
+                <div class="input-group servings-group">
+                    <label for="servings-target">Dla ilu osób ten tort?</label>
+                    <input type="number" id="servings-target" value="12" min="1">
+                </div>
+
+                <input type="hidden" id="egg-weight-val" value="50">
+
+                <button class="btn" id="go-to-pricing">Dalej: Stwórz wycenę →</button>
+            </div>
+
+            <!-- ETAP 2: WYCENA -->
+            <div id="pricing-stage" style="display: none;">
+                <p class="step-desc">Wpisz ceny zakupowe składników, aby wyliczyć koszt tortu.</p>
+                <div class="pricing-header">
+                    <span>Składnik</span>
+                    <span>Wlk. op.</span>
+                    <span>Cena op. (zł)</span>
+                </div>
+                <div id="pricing-ingredients-list"></div>
+                <button class="btn-secondary" id="back-to-recipe" style="margin-top: 2rem;">← Powrót do przepisu</button>
+            </div>
+        </section>
+
+        <!-- Panel Wyników (Prawa strona) -->
+        <section class="card" id="results-panel">
+            <div class="results-header">
+                <h3>Mnożnik składników</h3>
+            </div>
+
+            <div class="preview-label-outer">Wizualna różnica wielkości</div>
+            <!-- Nowa sekcja wizualizacji -->
+            <div class="visual-comparison" id="cake-preview">
+                <div class="cake-circle base" id="preview-base"></div>
+                <div class="cake-circle target" id="preview-target"></div>
+            </div>
+
+            <div class="multiplier-summary">
+                <span>Twój przelicznik:</span>
+                <span id="multiplier-badge" class="amount highlight">x1.44</span>
+            </div>
+
+            <ul id="ingredients-list" class="ingredients-list">
+                <!-- Tu trafią składniki z JS -->
+            </ul>
+
+            <div class="summary-card">
+                <div class="summary-item">
+                    <span class="summary-label">KOSZT PRODUKTÓW</span>
+                    <div class="price-tag"><span id="total-price">0.00</span> PLN</div>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-item">
+                    <span class="summary-label">CENA ZA 1 PORCJĘ</span>
+                    <div class="price-tag secondary"><span id="price-per-serving-val">0.00</span> PLN</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
